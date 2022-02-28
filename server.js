@@ -29,6 +29,10 @@ fs.readFile('db/db.json', 'utf8', (err, data) => {
 
     let notes = JSON.parse(data);
 
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, '/public/notes.html'))
+    })
+
     app.get('/notes', (req, res) => {
         res.json(JSON.parse(data));
     })
