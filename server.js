@@ -9,7 +9,7 @@ const app = express();
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', api);
+app.use(express.static(__dirname));
 
 app.use(express.static('public'));
 
@@ -60,8 +60,8 @@ fs.readFile('db/db.json', 'utf8', (err, data) => {
         console.log(`Deleted note ${req.params.id}`)
     })
 
-    app.listen(PORT, () =>
-    console.log(`App listening at http://localhost:${PORT} 🚀`)
-    );
-
 });
+
+app.listen(PORT, () =>
+    console.log(`App listening at http://localhost:${PORT} 🚀`)
+);
