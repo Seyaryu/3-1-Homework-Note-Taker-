@@ -51,15 +51,12 @@ app.get('*', (req, res) => {
 
 app.post('/api/notes', (req, res) => {
     //save request body, add to db.json, and return to client
-
     let addNote = req.body;
+    addNote.id = notes.length + 1;
     notes.push(addNote);
     updateDatabase();
     console.log(`New note added: ${addNote.title}`);
     res.json(notes);
-
-    // const note = req.body;
-    // readFileAsync("")
 })
 
 app.delete('/api/notes/:id', (req, res) => {
@@ -69,7 +66,6 @@ app.delete('/api/notes/:id', (req, res) => {
     notes.splice(req.params.id, 1);
     updateDatabase();
     console.log(`Deleted note ${req.params.id}`)
-
     newId = 0;
     noteId = req.params.id;
     notes = notes.filter(currentNote => {

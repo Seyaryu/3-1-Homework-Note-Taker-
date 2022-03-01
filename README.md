@@ -23,6 +23,7 @@ https://evening-earth-07701.herokuapp.com/
 
 ![Home Page](./pics/Home.PNG)
 
+![Notes Page](./pics/Note_Page.PNG)
 
 ## Credits
 
