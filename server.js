@@ -2,7 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const path = require('path');
 
-const PORT = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -26,13 +26,13 @@ function updateDatabase() {
 
 let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'))
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'))
+    // res.json(JSON.parse(data));
 })
 
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/notes.html'))
-    // res.json(JSON.parse(data));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
 app.get('/api/notes', (req, res) => {
@@ -46,16 +46,20 @@ app.get('/api/notes/:id', (req, res) => {
 
 app.get('*', (req, res) => {
     //catch all reamaining 'get' and go to index.html
-    res.sendFile(path.join(__dirname, '/public/index.html'))
+    res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
 app.post('/api/notes', (req, res) => {
     //save request body, add to db.json, and return to client
+
     let addNote = req.body;
     notes.push(addNote);
     updateDatabase();
     console.log(`New note added: ${addNote.title}`);
     res.json(notes);
+
+    // const note = req.body;
+    // readFileAsync("")
 })
 
 app.delete('/api/notes/:id', (req, res) => {
