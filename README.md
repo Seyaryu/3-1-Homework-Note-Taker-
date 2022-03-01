@@ -20,7 +20,6 @@ All external files needed are already installed.  Fork this repository, and set 
 ## Usage
 
 https://evening-earth-07701.herokuapp.com/ 
-https://vast-everglades-79868.herokuapp.com/
 
 ![Home Page](./pics/Home.PNG)
 
